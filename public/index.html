@@ -4,15 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Socket.io Chat</title>
 </head>
 
 <body>
-
+    <h1>What is your name?</h1>
+    <div id="connect">
+        <form>
+            <input type="text" id="username">
+            <button type="submit">Connect</button>
+        </form>
+    </div>
+    <div id="messages" class="hide">
+        <form>
+            <input type="text" id="outgoing">
+            <button type="submit">Send</button>
+        </form>
+        <div id="whoistyping"></div>
+        <ul id="incoming"></ul>
+    </div>
 </body>
+
 <script src="/socket.io/socket.io.js"></script>
-<script>
-    const socket = io();
-</script>
+<script src="script.js"></script>
 
 </html>
