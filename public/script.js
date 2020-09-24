@@ -4,11 +4,11 @@ const outgoingInput = document.getElementById('outgoing');
 
 const socket = io();
 
-socket.on('message', function ({ username, message }) {
+socket.on('message', function ({ username, text }) {
     removeTypingMessage(username);
     const li = document.createElement('li');
     li.className = username;
-    li.innerHTML = `<strong>${username}:</strong> ${message}`;
+    li.innerHTML = `<strong>${username}:</strong> ${text}`;
     incomingElement.appendChild(li);
 });
 
@@ -50,7 +50,7 @@ document.querySelector('#connect form').addEventListener('submit', function (eve
 document.querySelector('#messages form').addEventListener('submit', function (event) {
     event.preventDefault();
     const { value: username } = usernameInput;
-    socket.emit('message', { username, message: outgoingInput.value });
+    socket.emit('message', { username, text: outgoingInput.value });
     outgoingInput.value = '';
 });
 
