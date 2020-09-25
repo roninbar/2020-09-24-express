@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "http://localhost:4000",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
       "name": "Launch Edge",
       "type": "pwa-msedge",
       "request": "launch",
@@ -17,15 +24,41 @@
       "request": "launch",
       "url": "http://localhost:4000",
       "webRoot": "${workspaceFolder}",
-      "reAttach": true
+      "reAttach": true,
+      "pathMappings": [
+        {
+          "url": "webpack:///lib/index.js",
+          "path": "${workspaceFolder}/index.js"
+        },
+        {
+          "url": "http://localhost:4000/script.js",
+          "path": "localhost꞉4000/script.js"
+        },
+        {
+          "url": "http://localhost:4000/script.js",
+          "path": "${workspaceFolder}/public/script.js"
+        },
+        {
+          "url": "http://localhost:4000/script.js",
+          "path": "${workspaceFolder}/public/script.js"
+        },
+        {
+          "url": "webpack:///lib/index.js",
+          "path": "${workspaceFolder}/index.js"
+        }
+      ]
     },
     {
       "name": "Launch Server",
       "type": "pwa-node",
       "request": "launch",
       "program": "${workspaceFolder}/index.js",
-      "env": { "PORT": "4000" },
-      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "PORT": "4000"
+      },
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "console": "integratedTerminal",
       "stopOnEntry": true
     }
