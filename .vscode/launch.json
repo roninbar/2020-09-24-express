@@ -56,11 +56,9 @@
       "env": {
         "PORT": "4000",
         "USER": "root",
-        "PASS": "",
+        "PASS": ""
       },
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "console": "integratedTerminal",
       "stopOnEntry": true
     }
