@@ -54,7 +54,9 @@
       "request": "launch",
       "program": "${workspaceFolder}/index.js",
       "env": {
-        "PORT": "4000"
+        "PORT": "4000",
+        "USER": "root",
+        "PASS": "",
       },
       "skipFiles": [
         "<node_internals>/**"
