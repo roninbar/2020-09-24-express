@@ -1,7 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import socketio from 'socket.io';
-import { insertMessage } from './insertMessage';
+import { insertMessage } from './dal/message.js';
 
 const port = process.env.PORT || '4000';
 
