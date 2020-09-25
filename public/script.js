@@ -12,12 +12,12 @@ socket.on('message', function ({ username, text }) {
     incomingElement.appendChild(li);
 });
 
-socket.on('starttyping', function ({ username }) {
+socket.on('typing', function ({ username }) {
     const string = `${username} is typing...`;
     console.info(string);
-    if (!incomingElement.querySelector(`.${username}.istyping`)) {
+    if (!incomingElement.querySelector(`.${username}.typing`)) {
         const li = document.createElement('li');
-        li.className = `${username} istyping`;
+        li.className = `${username} typing`;
         li.innerText = string;
         incomingElement.appendChild(li);
     }
@@ -33,7 +33,7 @@ let timeoutId = 0;
 outgoingInput.addEventListener('keydown', function () {
     clearTimeout(timeoutId);
     const { value: username } = usernameInput;
-    socket.emit('starttyping', { username });
+    socket.emit('typing', { username });
     timeoutId = setTimeout(function () {
         socket.emit('stoptyping', { username });
     }, 2000);
@@ -49,13 +49,14 @@ document.querySelector('#connect form').addEventListener('submit', function (eve
 
 document.querySelector('#messages form').addEventListener('submit', function (event) {
     event.preventDefault();
+    clearTimeout(timeoutId);
     const { value: username } = usernameInput;
     socket.emit('message', { username, text: outgoingInput.value });
     outgoingInput.value = '';
 });
 
 function removeTypingMessage(username) {
-    const lis = incomingElement.querySelectorAll(`.${username}.istyping`);
+    const lis = incomingElement.querySelectorAll(`.${username}.typing`);
     for (let li of lis) {
         incomingElement.removeChild(li);
     }

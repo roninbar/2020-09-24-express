@@ -14,15 +14,14 @@ const server = app.listen(port);
 
 socketio(server).on('connect', function (socket) {
     console.debug(`Client ${socket.client.id} connected.`);
-    socket.on('message', async function (message) {
-        const { username, text } = message;
-        console.log('message', message);
-        socket.broadcast.emit('message', message);
+    socket.on('message', async function ({ username, text }) {
+        console.log('message', { username, text });
+        socket.broadcast.emit('message', { username, text });
         await insertMessage(username, text);
     });
-    socket.on('starttyping', function (message) {
-        console.log('starttyping', message);
-        socket.broadcast.emit('starttyping', message);
+    socket.on('typing', function (message) {
+        console.log('typing', message);
+        socket.broadcast.emit('typing', message);
     });
     socket.on('stoptyping', function (message) {
         console.log('stoptyping', message);
